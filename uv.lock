@@ -1,0 +1,36 @@
+version = 1
+revision = 1
+requires-python = ">=3.13"
+
+[[package]]
+name = "bullet"
+version = "2.2.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/6d/e7/a8571b2634843b08d7672415a178f6f9e3797ef99b179c82c0a483553c1c/bullet-2.2.0.tar.gz", hash = "sha256:dfa0fa81810ad1a9e688815ca04f24af87ff5cdbe803b42fa634b1f50fc9d887", size = 8894 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c2/7e/7b8dc139e2c46b66d007b1c09d94142f3ff65618498cab68916f825c2c91/bullet-2.2.0-py3-none-any.whl", hash = "sha256:d22528deb914ce3ff20a4a000fa5ba37179697f384a0748f90691de8a74cf006", size = 10447 },
+]
+
+[[package]]
+name = "demeter"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "bullet" },
+    { name = "sh" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "bullet" },
+    { name = "sh", specifier = ">=2.2.2" },
+]
+
+[[package]]
+name = "sh"
+version = "2.2.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/59/52/f43920223c93e31874677c681b8603d36a40d3d8502d3a37f80d3995d43e/sh-2.2.2.tar.gz", hash = "sha256:653227a7c41a284ec5302173fbc044ee817c7bad5e6e4d8d55741b9aeb9eb65b", size = 345866 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/70/98/d82f14ac7ffedbd38dfa2383f142b26d18d23ca6cf35a40f4af60df666bd/sh-2.2.2-py3-none-any.whl", hash = "sha256:e0b15b4ae8ffcd399bc8ffddcbd770a43c7a70a24b16773fbb34c001ad5d52af", size = 38295 },
+]
