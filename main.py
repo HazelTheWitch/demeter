@@ -132,8 +132,9 @@ def main():
 
     chroot.systemctl("enable", "NetworkManager")
 
-    chroot.git.clone("https://aur.archlinux.org/aura.git")
-    chroot.sudo("-u", username, "--", "makepkg", "--dir", "aura", "-si")
+    print("Installing aura")
+    chroot.git.clone("https://aur.archlinux.org/aura.git", _out=stdout)
+    chroot.sudo("-u", username, "--", "makepkg", "--dir", "aura", "-si", _out=stdout)
     chroot.rm("-rf", "aura")
 
 if __name__ == "__main__":
