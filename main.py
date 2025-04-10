@@ -1,28 +1,29 @@
-import bullet
 import sh
 from pathlib import Path
 from sys import stdout
 import json
+import getpass
 
 
 def header(header: str):
     print(f" -- {header} --")
 
+
 def main():
-    disk = bullet.Input("Drive to install to: ").launch()
-    hostname = bullet.Input("Hostname for new system: ").launch()
-    username = bullet.Input("Username for new user: ").launch()
+    disk = input("Drive to install to: ")
+    hostname = input("Hostname for new system: ")
+    username = input("Username for new user: ")
 
     while True:
-        password = bullet.Password("Password for new user: ").launch()
+        password = getpass.getpass("Password for new user: ")
 
-        if bullet.Password("Repeat password: ").launch() == password:
+        if getpass.getpass("Repeat password: ") == password:
             break
 
     header(f"Partitioning {disk}")
 
     if sh.partprobe("-d", "-s", disk):
-        if not bullet.YesNo(f"{disk} is not empty, do you want to overwrite? ").launch():
+        if input(f"{disk} is not empty, do you want to overwrite? (y/N)").lower() != "y":
             print("Aboring!")
             return
 
