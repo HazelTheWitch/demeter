@@ -130,8 +130,6 @@ def main():
 
     chroot.echo("%wheel ALL=(ALL:ALL) ALL", _out=Path("/mnt/etc/sudoers").open("a"))
 
-    chroot.systemctl("enable", "NetworkManager")
-
     print("Installing aura")
     chroot.git.clone("https://aur.archlinux.org/aura.git", _out=stdout)
     chroot.sudo("-u", username, "--", "makepkg", "--dir", "aura", "-si", _out=stdout)
