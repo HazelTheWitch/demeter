@@ -23,7 +23,7 @@ def main():
     header(f"Partitioning {disk}")
 
     if sh.partprobe("-d", "-s", disk):
-        if input(f"{disk} is not empty, do you want to overwrite? (y/N)").lower() != "y":
+        if input(f"{disk} is not empty, do you want to overwrite? (y/N): ").lower() != "y":
             print("Aboring!")
             return
 
@@ -80,6 +80,7 @@ def main():
         "grub",
         "man",
         "sudo",
+        "efibootmgr",
     ]
     
     cpu = sh.grep("vendor_id", "/proc/cpuinfo")
