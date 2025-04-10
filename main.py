@@ -72,8 +72,13 @@ def main():
 
     pacstrap_packages = [
         "base",
+        "base-devel",
         "linux",
         "linux-firmware",
+        "git",
+        "grub",
+        "man",
+        "sudo",
     ]
     
     cpu = sh.grep("vendor_id", "/proc/cpuinfo")
