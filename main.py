@@ -72,22 +72,8 @@ def main():
 
     pacstrap_packages = [
         "base",
-        "base-devel",
         "linux",
         "linux-firmware",
-        "git",
-        "btrfs-progs",
-        "grub",
-        "efibootmgr",
-        "networkmanager",
-        "pipewire",
-        "pipewire-alsa",
-        "pipewire-pulse",
-        "pipewire-jack",
-        "wireplumber",
-        "reflector",
-        "man",
-        "sudo",
     ]
     
     cpu = sh.grep("vendor_id", "/proc/cpuinfo")
@@ -139,8 +125,9 @@ def main():
 
     chroot.systemctl("enable", "NetworkManager")
 
-    chroot.bash("-c", f"cd /home/{username} && su {username} -c 'git clone https://aur.archlinux.org/aura.git && makepkg -si --noconfirm'")
-    chroot.rm("-rf", f"/home/{username}/aura")
+    chroot.git.clone("https://aur.archlinux.org/aura.git")
+    chroot.sudo(user=username, "--", "makepkg", "--dir", "aura", "-si")
+    chroot.rm("-rf", "aura")
 
 if __name__ == "__main__":
     main()
